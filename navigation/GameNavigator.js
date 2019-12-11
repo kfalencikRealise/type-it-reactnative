@@ -8,7 +8,13 @@ import GameOverScreen from '../screens/GameOverScreen';
 const GameNavigator = createStackNavigator({
   GameStart: GameStartScreen,
   Game: GameScreen,
-  GameOver: GameOverScreen
+  GameOver: GameOverScreen,
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+      headerVisible: false,
+  }
 });
 
 export default createAppContainer(GameNavigator);

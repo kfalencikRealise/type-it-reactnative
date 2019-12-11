@@ -1,21 +1,20 @@
 {
   "expo": {
-    "name": "RN Guide",
-    "slug": "rn-complete-guide",
+    "name": "Type it!",
+    "slug": "type-it",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
-    "version": "1.0.0",
-    "orientation": "default",
+    "version": "1.2.0",
+    "orientation": "landscape",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#1ea9d7"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +23,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": false
+    },
+    "description": "A simple typing game",
+    "githubUrl": "https://github.com/kfalencikRealise/type-it-reactnative"
   }
 }

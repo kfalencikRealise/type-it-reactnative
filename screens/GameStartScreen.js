@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, ImageBackground, Image } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image } from 'react-native';
+
+import ButtonReal from '../components/ButtonReal';
 
 const GameStart = props => {
   const [difficulty, setDifficulty] = useState('normal');
@@ -14,23 +16,9 @@ const GameStart = props => {
             {/* <Text style={styles.text}>Select difficulty</Text> */}
 
             <View style={styles.buttons}>
-              {/* <View style={styles.button}>
-                <Button title="Easy" color="orange" onPress={() => {
-                  props.navigation.replace('Game');
-                }} />
-              </View> */}
-              
               <View style={styles.button}>
-                <Button title="Start game" onPress={() => {
-                  props.navigation.replace('Game');
-                }} />
+                <ButtonReal title="Start game" color="#1ea9d7" onPress={() => props.navigation.replace('Game')} />
               </View>
-
-              {/* <View style={styles.button}>
-                <Button title="Hard" color="red" onPress={() => {
-                  props.navigation.replace('Game');
-                }} />
-              </View> */}
             </View>
           </ImageBackground>
         </View>

@@ -7,8 +7,15 @@ import ScoreBoard from '../components/ScoreBoard';
 import Word from '../components/Word';
 import Description from '../components/Description';
 
+import ButtonReal from '../components/ButtonReal';
 
 const GameScreen = props => {
+  // These will be set depending on difficulty
+  let defaultTimer = 30;
+  let timePenalty = 10;
+  let timeBonus = 2;
+  let scoreBonus = 100;
+
   const [words, setWords] = useState(data);
   const [currentCharacter, setCurrentCharacter] = useState(0);
   const [wordNumber, setWordNumber] = useState(0);
@@ -18,7 +25,7 @@ const GameScreen = props => {
   const [dictionarySize] = useState(Object.keys(words).length);
   const [letters, setLetters] = useState([]);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(45);
+  const [timer, setTimer] = useState(defaultTimer);
 
   let timerInterval = null;
 
@@ -60,14 +67,14 @@ const GameScreen = props => {
       // If this was the last letter get a new word
       if (currentCharacter === wordLength - 1) {
         setWordNumber(wordNumber + 1);
-        setScore(score + 100 + ((wordLength * 10) / 2));
-        setTimer(timer => timer + 2 + wordLength);
+        setScore(score + scoreBonus + ((wordLength * 10) / 2));
+        setTimer(timer => timer + parseInt(wordLength / timeBonus));
         getNextWord();
       }
       
     } else {
       Vibration.vibrate(500);
-      setTimer(timer => timer - 5);
+      setTimer(timer => timer - timePenalty);
       getNextWord();
     }
   }
@@ -96,8 +103,15 @@ const GameScreen = props => {
     <View style={styles.screen}>
       <Image style={{position: 'absolute', height: 300, resizeMode: 'cover', width: '100%', bottom: 0, left: 0}} source={require('../assets/background-screen.png')} />
       <ScoreBoard score={score} timer={timer} wordcount={wordNumber}></ScoreBoard>
+
+      <View style={{position: 'absolute', right: 10, top: 40}}>
+        <ButtonReal title="Stop game" color="red" onPress={() => {
+          props.navigation.replace('GameOver', {score:score});
+        }} />
+      </View>
       
-      <Word word={currentWord}></Word>
+      
+      <Word character={currentCharacter} word={currentWord}></Word>
 
       <View style={styles.letters}>
         { 

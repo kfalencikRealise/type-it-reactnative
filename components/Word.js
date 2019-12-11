@@ -6,7 +6,18 @@ const Word = props => {
       <View style={styles.board}>
         <View style={styles.panel}>
           <ImageBackground style={{width: '100%', height: '100%', alignItems: 'center', justifyContent: 'flex-end'}} source={require('../assets/top-board-long.png')}>
-            <Text style={styles.text}>{props.word}</Text>
+
+            <View style={styles.letters}>
+              {
+                props.word.split('').map((letter, index) => {
+                  if (props.character <= index) {
+                    return <Text key={index + letter} style={styles.text}>{letter}</Text>
+                  } else {
+                    return <Text key={index + letter} style={{...styles.text, ...styles.textComplete}}>{letter}</Text>
+                  }
+                })
+              }
+            </View>
           </ImageBackground>
         </View>
       </View>
@@ -23,10 +34,16 @@ const styles = StyleSheet.create({
       width: 300,
       height: 100,
     },
+    letters: {
+      flexDirection: 'row',
+    },
     text: {
       fontSize: 22,
       color: '#222',
       fontWeight: 'bold',
       marginBottom: 8
+    },
+    textComplete: {
+      color: 'green'
     }
 });
